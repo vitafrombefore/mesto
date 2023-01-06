@@ -2,25 +2,25 @@
     border-bottom: 1px solid #545454;
     max-width: 880px;
     height: 73px;
-    margin: 0 200px;
+    margin: 0 auto;
     padding: 45px 0 0 0;
 }
 
-@media screen and (max-width: 1279px) and (max-width: 1024px) {
+@media screen and (max-width: 1279px) and (min-width: 1024px) {
     .header {
         margin: 0 15%;
         padding-top: 28px;
     }
 }
 
-@media screen and (max-width: 1023px) and (max-width: 768px) {
+@media screen and (max-width: 1023px) and (min-width: 768px) {
     .header {
         margin: 0 10%;
         padding-top: 28px;
     }
 }
 
-@media screen and (max-width: 767px) and (max-width: 321px) {
+@media screen and (max-width: 767px) and (min-width: 321px) {
     .header {
         margin: 0 5%;
         padding-top: 28px;
@@ -30,7 +30,7 @@
 @media screen and (max-width: 320px) {
     .header {
         height: 55px;
-        margin: 0 auto;
+        margin: 0;
         padding-top: 28px;
     }
 }
