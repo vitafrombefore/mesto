@@ -1,0 +1,18 @@
+.element {
+    display: flex;
+    flex-direction: column;
+    min-width: 263px;
+    min-height: 348px;
+    background: #FFFFFF;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 1023px) and (min-width: 551px) {
+    .element:nth-of-type(odd) {
+        justify-self: end;
+    }
+
+    .element:nth-of-type(even) {
+        justify-self: start;
+    }
+}

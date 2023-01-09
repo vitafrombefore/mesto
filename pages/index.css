@@ -9,9 +9,19 @@
 
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
+@import url(../blocks/profile/__add-button/_right/profile__add-button_right.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__avatar/_left-top/profile__avatar_left-top.css);
 @import url(../blocks/profile/__description/profile__description.css);
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
 @import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__info/_left-bottom/profile__info_left-bottom.css);
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 @import url(../blocks/profile/__title/profile__title.css);
+
+@import url(../blocks/elements/elements.css);
+@import url(../blocks/element/element.css);
+@import url(../blocks/element/__group/element__group.css);
+@import url(../blocks/element/__image/element__image.css);
+@import url(../blocks/element/__like-button/element__like-button.css);
+@import url(../blocks/element/__title/element__title.css);

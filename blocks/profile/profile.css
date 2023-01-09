@@ -22,13 +22,16 @@
     .profile {
         margin: 42px 5% 0;
         justify-items: center;
-        grid-template-columns: 1fr;
-        grid-template-rows: min-content 1fr min-content;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: min-content min-content;
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 550px) {
     .profile {
         margin: 42px 19px 0;
+        justify-items: center;
+        grid-template-columns: 1fr;
+        grid-template-rows: min-content 1fr min-content;
     }
 }
