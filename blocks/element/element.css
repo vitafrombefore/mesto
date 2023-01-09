@@ -16,3 +16,27 @@
         justify-self: start;
     }
 }
+
+@media screen and (max-width: 1023px) and (min-width: 901px) {
+    .element {
+    width: 360px;
+    }
+  }
+
+  @media screen and (max-width: 900px) and (min-width: 751px) {
+    .element {
+      width: 320px;
+    }
+  }
+  
+  @media screen and (max-width: 750px) and (min-width: 551px) {
+    .element {
+      width: 263px;
+    }
+  }
+  
+  @media screen and (max-width: 550px) {
+    .element {
+      width: 282px;
+    }
+  }
