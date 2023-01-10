@@ -1,32 +1,8 @@
 .element__image {
   width: 100%;
-  height: 282px;
+  height: auto;
   object-position: center;
   object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-}
-
-@media screen and (max-width: 1023px) and (min-width: 901px) {
-  .element__image {
-    height: 360px;
-  }
-}
-
-@media screen and (max-width: 900px) and (min-width: 751px) {
-  .element_image {
-    height: 320px;
-  }
-}
-
-@media screen and (max-width: 750px) and (min-width: 551px) {
-  .element__image {
-    height: 263px;
-  }
-}
-
-@media screen and (max-width: 550px) {
-  .element__image {
-    height: 282px;
-  }
 }

@@ -6,13 +6,13 @@
     margin: 40px auto 0;
 }
 
-@media screen and (max-width: 1279px) and (min-width: 1024px) {
+@media screen and (max-width: 1279px) {
     .profile {
         margin: 40px 15% 0;
     }
 }
 
-@media screen and (max-width: 1023px) and (min-width: 801px) {
+@media screen and (max-width: 1024px) {
     .profile {
         margin: 40px 10% 0;
     }

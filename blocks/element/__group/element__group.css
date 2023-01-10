@@ -4,3 +4,17 @@
     width: 89%;
     padding: 25px 15px 31px 21px;
 }
+
+@media screen and (max-width: 800px) {
+    .element__group {
+        padding-left: 11px;
+        padding-right: 5px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .element__group {
+        padding-left: 21px;
+        padding-right: 15px;
+    }
+}

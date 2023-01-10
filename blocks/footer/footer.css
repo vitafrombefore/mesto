@@ -6,13 +6,13 @@
     padding-bottom: 60px;
 }
 
-@media screen and (max-width: 1023px) and (min-width: 768px) {
+@media screen and (max-width: 1024px) {
     .footer {
         margin: 67px 10% 0;
     }
 }
 
-@media screen and (max-width: 767px) and (min-width: 321px) {
+@media screen and (max-width: 768px) {
     .footer {
         margin: 48px 10% 0;
     }
