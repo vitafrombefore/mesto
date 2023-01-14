@@ -1,0 +1,8 @@
+.profile__info_left-bottom {}
+
+@media screen and (max-width: 800px) and (min-width: 551px) {
+    .profile__info_left-bottom {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+}

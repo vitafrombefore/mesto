@@ -1,0 +1,8 @@
+.profile__add-button_right {}
+
+@media screen and (max-width: 800px) and (min-width: 551px) {
+  .profile__add-button_large {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+  }
+}
