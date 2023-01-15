@@ -1,15 +1,24 @@
 .profile__description {
+    max-width: 293px;
     margin: 22px 0 0 30px;
 }
 
 @media screen and (max-width: 800px) {
     .profile__description {
-        margin: 22px 0 30px 30px;
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .profile__description {
+        max-width: 248px;
+        margin: 22.25px 0 36px 10px;
     }
 }
 
 @media screen and (max-width: 320px) {
     .profile__description {
+        max-width: 189px;
         margin: 22.25px 0 36px 30px;
     }
 }

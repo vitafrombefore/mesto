@@ -7,6 +7,7 @@
     font-weight: 500;
     line-height: 114%;
     color: #fff;
+
 }
 
 @media screen and (max-width: 800px) {
@@ -14,6 +15,14 @@
         text-align: center;
         font-size: 32px;
         line-height: 122%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .profile__title {
+        text-align: center;
+        font-size: 30px;
+        line-height: 118%;
     }
 }
 

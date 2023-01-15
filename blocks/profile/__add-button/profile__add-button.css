@@ -4,10 +4,12 @@
     padding-left: 140px;
     background-color: #000;
     background-image: url(../../../images/profile-add-button.svg);
+    background-size: 22px 22px;
     background-repeat: no-repeat;
     background-position: center;
     border: 2px solid #FFFFFF;
     border-radius: 2px;
+    cursor: pointer;
 }
 
 .profile__add-button:hover {
@@ -19,5 +21,6 @@
     .profile__add-button {
         padding-left: 139px;
         padding-right: 139px;
+        background-size: 16px 16px;
     }
 }

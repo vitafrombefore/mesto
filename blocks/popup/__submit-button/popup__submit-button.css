@@ -6,11 +6,12 @@
     background: #000;
     border: none;
     border-radius: 2px;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 400;
-    line-height: 15px;
+    line-height: 22px;
     text-align: center;
     color: #FFFFFF;
+    cursor: pointer;
 }
 
 .popup__submit-button:hover {
@@ -22,5 +23,7 @@
     .popup__submit-button {
         max-height: 46px;
         margin-top: 45px;
+        font-size: 14px;
+        line-height: 17px;
     }
 }
