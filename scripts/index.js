@@ -1,3 +1,4 @@
+// edit profile popup
 const popupElement = document.querySelector('.popup');
 const popupOpenButtonElement = document.querySelector('.profile__edit-button');
 const popupCloseButtonElement = popupElement.querySelector('.popup__close-button');
