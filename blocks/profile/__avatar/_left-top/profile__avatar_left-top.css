@@ -1,8 +1,0 @@
-.profile__avatar_left-top {}
-
-@media screen and (max-width: 800px) and (min-width: 551px) {
-    .profile__avatar_left-top {
-        grid-column: 1 / 2;
-        grid-row: 1 / 2;
-    }
-}

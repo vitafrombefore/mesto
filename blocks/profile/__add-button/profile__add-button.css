@@ -17,7 +17,7 @@
     transition: opacity .2s linear;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 918px) {
     .profile__add-button {
         padding-left: 139px;
         padding-right: 139px;

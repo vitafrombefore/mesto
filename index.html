@@ -15,66 +15,36 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar profile__avatar_left-top" src="./images/profile-avatar.png"
+        <img class="profile__avatar" src="./images/profile-avatar.png"
           alt="Мужчина в красной шапке.">
-        <div class="profile__info profile__info_left-bottom">
+        <div class="profile__info">
           <div class="profile__description">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
           <button class="profile__edit-button" type="button"></button>
         </div>
-        <button class="profile__add-button profile__add-button_right" type="button"></button>
+        <button class="profile__add-button" type="button"></button>
       </section>
       <section class="elements">
-        <article class="element">
-          <img class="element__image" src="./images/elements-baykal.jpg" alt="Озеро Байкал зимой.">
-          <div class="element__group">
-            <h2 class="element__title">Озеро Байкал</h2>
-            <button class="element__like-button element__like-button_active" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/elements-borneo.jpg" alt="Вид на побережье и океан.">
-          <div class="element__group">
-            <h2 class="element__title">Борнео</h2>
-            <button class="element__like-button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/elements-dunay.jpg" alt="Вид на замок и реку Дунай.">
-          <div class="element__group">
-            <h2 class="element__title">Река Дунай</h2>
-            <button class="element__like-button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/elements-mekong.jpg" alt="Два сапсерфера, плывущие по реке.">
-          <div class="element__group">
-            <h2 class="element__title">Река Меконг</h2>
-            <button class="element__like-button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/elements-novaya-zelandiya.jpg"
-            alt="Овечки на фоне берегов Новой Зеландии.">
-          <div class="element__group">
-            <h2 class="element__title">Новая Зеландия</h2>
-            <button class="element__like-button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/elements-taiti.jpg" alt="Пальмы на фоне океана.">
-          <div class="element__group">
-            <h2 class="element__title">Таити</h2>
-            <button class="element__like-button" type="button"></button>
-          </div>
-        </article>
+        <ul class="elements__container"></ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&#169; 2023 Mesto Russia</p>
     </footer>
+
+  
+    <template id="new-element-template">
+      <li class="new-element">
+        <img class="new-element__image" src="#" alt="#">
+       <!--   <button class="new-element__delete-button" type="button"></button> -->
+        <div class="new-element__group">
+          <h2 class="new-element__title"></h2>
+          <button class="new-element__like-button" type="button"></button>
+        </div>
+      </li>
+    </template>
 
     <section class="popup popup__edit-profile">
       <div class="popup__container">
@@ -93,8 +63,9 @@
         <button class="popup__close-button" type="button"></button>
         <h2 class="popup__title">Новое место</h2>
         <form class="popup__form popup__form_add" name="profile-add-form">
-          <input class="popup__input popup__input_add_name" name="profile-add-name" type="text" placeholder="Название">
-          <input class="popup__input popup__input_add_link" name="profile-add-link" type="text" placeholder="Ссылка на картинку">
+          <input class="popup__input popup__input_add_name" name="elements-add-name" type="text" placeholder="Название">
+          <input class="popup__input popup__input_add_link" name="elements-add-link" type="text"
+            placeholder="Ссылка на картинку">
           <button class="popup__submit-button" type="submit">Создать</button>
         </form>
       </div>

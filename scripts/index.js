@@ -1,3 +1,85 @@
+// default new elements
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+
+const elementsContainer = document.querySelector('.elements__container');
+const newElementAddForm = document.querySelector('.popup__form_add');
+const newElementNameInput = document.querySelector('.popup__input_add_name');
+const newElementLinkInput = document.querySelector('.popup__input_add_link');
+const newElementTemplate = document.querySelector('#new-element-template');
+
+// add template instead of elements
+const createNewElement = (name, link) => {
+    const newElement = newElementTemplate.content.querySelector('.new-element').cloneNode(true);
+
+    const newElementTitle = newElement.querySelector('.new-element__title');
+    newElementTitle.textContent = name;
+
+    const newElementImage = newElement.querySelector('.new-element__image');
+    newElementImage.src = link;
+
+    // like button 
+    const likeButton = newElement.querySelector('.new-element__like-button');
+    likeButton.addEventListener('click', (evt) => {
+        evt.target.classList.toggle('new-element__like-button_active');
+      });
+   
+    // delete button
+    const deleteButton = newElement.querySelector('.new-element__delete-button');
+    deleteButton.addEventListener('click', () => {
+      newElement.remove();
+    });
+
+    return newElement;
+};
+
+// add any new element
+const addNewElement = (name, link) => {
+    elementsContainer.prepend(createNewElement(name, link));
+};
+
+// add default new elements
+initialCards.forEach((item) => {
+    elementsContainer.append(createNewElement(item.name, item.link));
+});
+
+// submit form 
+const handleAddFormSubmit = (evt) => {
+    evt.preventDefault();
+    const name = newElementNameInput.value;
+    const link = newElementLinkInput.value;
+    addNewElement(name, link);
+    closePopup(addElementsPopup);
+    newElementNameInput.value = '';
+    newElementLinkInput.value = '';
+};
+
+newElementAddForm.addEventListener('submit', handleAddFormSubmit);
+
 // popups
 const allPopups = document.querySelectorAll('.popup');
 const editProfilePopup = document.querySelector('.popup__edit-profile');
@@ -14,8 +96,8 @@ const openPopup = popup => {
 popupOpenEditButton.addEventListener('click', () => {
     openPopup(editProfilePopup);
 
-    nameInput.value = profileTitle.textContent;
-    jobInput.value = profileSubtitle.textContent;
+    profileNameInput.value = profileTitle.textContent;
+    profileJobInput.value = profileSubtitle.textContent;
 });
 
 popupOpenAddButton.addEventListener('click', () => openPopup(addElementsPopup));
@@ -37,16 +119,16 @@ popupCloseButton.forEach(button => {
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 let profileEditForm = document.querySelector('.popup__form_edit');
-let nameInput = document.querySelector('.popup__input_edit_name');
-let jobInput = document.querySelector('.popup__input_edit_job');
+let profileNameInput = document.querySelector('.popup__input_edit_name');
+let profileJobInput = document.querySelector('.popup__input_edit_job');
 
-const handleFormSubmit = evt => {
+const handleEditFormSubmit = evt => {
     evt.preventDefault();
 
-    profileTitle.textContent = nameInput.value;
-    profileSubtitle.textContent = jobInput.value;
+    profileTitle.textContent = profileNameInput.value;
+    profileSubtitle.textContent = profileJobInput.value;
 
     closePopup(editProfilePopup);
 }
 
-profileEditForm.addEventListener('submit', handleFormSubmit)
+profileEditForm.addEventListener('submit', handleEditFormSubmit)
