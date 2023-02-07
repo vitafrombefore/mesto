@@ -55,7 +55,7 @@ const createNewElement = (name, link) => {
     });
 
     // open large image pupup
-    const openLargeImage = document.querySelector('.popup__open-new-element');
+    const openLargeImage = document.querySelector('.popup_type_open-image');
     newElementImage.addEventListener('click', () => {
         openPopup(openLargeImage);
 
@@ -94,8 +94,8 @@ newElementAddForm.addEventListener('submit', handleAddFormSubmit);
 
 // popups
 const allPopups = document.querySelectorAll('.popup');
-const editProfilePopup = document.querySelector('.popup__edit-profile');
-const addElementsPopup = document.querySelector('.popup__add-elements');
+const editProfilePopup = document.querySelector('.popup_type_edit-profile');
+const addElementsPopup = document.querySelector('.popup_type_add-elements');
 
 // open edit and add popups
 const popupOpenEditButton = document.querySelector('.profile__edit-button');
