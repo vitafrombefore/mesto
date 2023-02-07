@@ -46,12 +46,24 @@ const createNewElement = (name, link) => {
     const likeButton = newElement.querySelector('.new-element__like-button');
     likeButton.addEventListener('click', (evt) => {
         evt.target.classList.toggle('new-element__like-button_active');
-      });
-   
+    });
+
     // delete button
     const deleteButton = newElement.querySelector('.new-element__delete-button');
     deleteButton.addEventListener('click', () => {
-      newElement.remove();
+        newElement.remove();
+    });
+
+    // open large image pupup
+    const openLargeImage = document.querySelector('.popup__open-new-element');
+    newElementImage.addEventListener('click', () => {
+        openPopup(openLargeImage);
+
+        const largeImage = document.querySelector('.popup__large-image');
+        largeImage.src = newElementImage.src;
+
+        const largeImageCaption = document.querySelector('.popup__large-caption');
+        largeImageCaption.textContent = newElementTitle.textContent;
     });
 
     return newElement;
@@ -67,7 +79,7 @@ initialCards.forEach((item) => {
     elementsContainer.append(createNewElement(item.name, item.link));
 });
 
-// submit form 
+// submit form to add new elements
 const handleAddFormSubmit = (evt) => {
     evt.preventDefault();
     const name = newElementNameInput.value;
@@ -85,9 +97,14 @@ const allPopups = document.querySelectorAll('.popup');
 const editProfilePopup = document.querySelector('.popup__edit-profile');
 const addElementsPopup = document.querySelector('.popup__add-elements');
 
-// open popups
+// open edit and add popups
 const popupOpenEditButton = document.querySelector('.profile__edit-button');
 const popupOpenAddButton = document.querySelector('.profile__add-button');
+
+let profileTitle = document.querySelector('.profile__title');
+let profileSubtitle = document.querySelector('.profile__subtitle');
+let profileNameInput = document.querySelector('.popup__input_edit_name');
+let profileJobInput = document.querySelector('.popup__input_edit_job');
 
 const openPopup = popup => {
     popup.classList.add('popup_opened');
@@ -102,7 +119,7 @@ popupOpenEditButton.addEventListener('click', () => {
 
 popupOpenAddButton.addEventListener('click', () => openPopup(addElementsPopup));
 
-// close popups
+// close all popups
 const popupCloseButton = document.querySelectorAll('.popup__close-button');
 
 const closePopup = popup => {
@@ -115,12 +132,8 @@ popupCloseButton.forEach(button => {
     })
 });
 
-// edit profile popup
-let profileTitle = document.querySelector('.profile__title');
-let profileSubtitle = document.querySelector('.profile__subtitle');
+// submit form to edit profile 
 let profileEditForm = document.querySelector('.popup__form_edit');
-let profileNameInput = document.querySelector('.popup__input_edit_name');
-let profileJobInput = document.querySelector('.popup__input_edit_job');
 
 const handleEditFormSubmit = evt => {
     evt.preventDefault();
