@@ -1,69 +1,58 @@
-// default new elements
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
+// template and its container
+const newElementTemplate = document.querySelector('#new-element-template');
 const elementsContainer = document.querySelector('.elements__container');
+// popups
+const allPopups = document.querySelectorAll('.popup');
+// popup to edit profie
+const profileEditPopup = document.querySelector('.popup_type_edit-profile');
+const openProfileEditPopup = document.querySelector('.profile__edit-button');
+const profileEditForm = document.querySelector('.popup__form_edit');
+const profileTitle = document.querySelector('.profile__title');
+const profileSubtitle = document.querySelector('.profile__subtitle');
+const profileNameInput = document.querySelector('.popup__input_edit_name');
+const profileJobInput = document.querySelector('.popup__input_edit_job');
+// popup to add new elements
+const newElementAddPopup = document.querySelector('.popup_type_add-elements');
+const openNewElementAddPopup = document.querySelector('.profile__add-button');
 const newElementAddForm = document.querySelector('.popup__form_add');
 const newElementNameInput = document.querySelector('.popup__input_add_name');
 const newElementLinkInput = document.querySelector('.popup__input_add_link');
-const newElementTemplate = document.querySelector('#new-element-template');
+// popup to open large image
+const openLargeImagePopup = document.querySelector('.popup_type_open-image');
+// button to close popup
+const closePopups = document.querySelectorAll('.popup__close-button');
 
 // add template instead of elements
 const createNewElement = (name, link) => {
     const newElement = newElementTemplate.content.querySelector('.new-element').cloneNode(true);
-
     const newElementTitle = newElement.querySelector('.new-element__title');
-    newElementTitle.textContent = name;
-
     const newElementImage = newElement.querySelector('.new-element__image');
+    const likeNewElement = newElement.querySelector('.new-element__like-button');
+    const deleteNewElement = newElement.querySelector('.new-element__delete-button');
+    const largeImage = document.querySelector('.popup__large-image');
+    const largeImageCaption = document.querySelector('.popup__large-caption');
+
+    newElementTitle.textContent = name;
+    newElementTitle.alt = name;
     newElementImage.src = link;
 
-    // like button 
-    const likeButton = newElement.querySelector('.new-element__like-button');
-    likeButton.addEventListener('click', (evt) => {
+    // like new element
+    likeNewElement.addEventListener('click', (evt) => {
         evt.target.classList.toggle('new-element__like-button_active');
     });
 
-    // delete button
-    const deleteButton = newElement.querySelector('.new-element__delete-button');
-    deleteButton.addEventListener('click', () => {
+    // delete new element
+    deleteNewElement.addEventListener('click', () => {
         newElement.remove();
     });
 
     // open large image pupup
-    const openLargeImage = document.querySelector('.popup_type_open-image');
     newElementImage.addEventListener('click', () => {
-        openPopup(openLargeImage);
+        openPopup(openLargeImagePopup);
 
-        const largeImage = document.querySelector('.popup__large-image');
-        largeImage.src = newElementImage.src;
-
-        const largeImageCaption = document.querySelector('.popup__large-caption');
-        largeImageCaption.textContent = newElementTitle.textContent;
+        largeImage.src = link;
+        largeImage.alt = name;
+        largeImageCaption.textContent = name;
     });
 
     return newElement;
@@ -79,69 +68,52 @@ initialCards.forEach((item) => {
     elementsContainer.append(createNewElement(item.name, item.link));
 });
 
-// submit form to add new elements
-const handleAddFormSubmit = (evt) => {
+// submit to add new element
+const submitNewElementAddForm = (evt) => {
     evt.preventDefault();
     const name = newElementNameInput.value;
     const link = newElementLinkInput.value;
     addNewElement(name, link);
-    closePopup(addElementsPopup);
-    newElementNameInput.value = '';
-    newElementLinkInput.value = '';
+    closePopup(newElementAddPopup);
+    newElementAddForm.reset();
 };
 
-newElementAddForm.addEventListener('submit', handleAddFormSubmit);
+newElementAddForm.addEventListener('submit', submitNewElementAddForm);
 
-// popups
-const allPopups = document.querySelectorAll('.popup');
-const editProfilePopup = document.querySelector('.popup_type_edit-profile');
-const addElementsPopup = document.querySelector('.popup_type_add-elements');
-
-// open edit and add popups
-const popupOpenEditButton = document.querySelector('.profile__edit-button');
-const popupOpenAddButton = document.querySelector('.profile__add-button');
-
-let profileTitle = document.querySelector('.profile__title');
-let profileSubtitle = document.querySelector('.profile__subtitle');
-let profileNameInput = document.querySelector('.popup__input_edit_name');
-let profileJobInput = document.querySelector('.popup__input_edit_job');
-
+// open popup
 const openPopup = popup => {
     popup.classList.add('popup_opened');
 };
 
-popupOpenEditButton.addEventListener('click', () => {
-    openPopup(editProfilePopup);
+// open popup to edit profile
+openProfileEditPopup.addEventListener('click', () => {
+    openPopup(profileEditPopup);
 
     profileNameInput.value = profileTitle.textContent;
     profileJobInput.value = profileSubtitle.textContent;
 });
 
-popupOpenAddButton.addEventListener('click', () => openPopup(addElementsPopup));
+// open popup to add new element
+openNewElementAddPopup.addEventListener('click', () => openPopup(newElementAddPopup));
 
-// close all popups
-const popupCloseButton = document.querySelectorAll('.popup__close-button');
-
+// close popup
 const closePopup = popup => {
     popup.classList.remove('popup_opened');
 };
 
-popupCloseButton.forEach(button => {
-    button.addEventListener('click', () => {
-        closePopup(button.closest('.popup'));
-    })
+closePopups.forEach(button => {
+    const popup = button.closest('.popup');
+    button.addEventListener('click', () => closePopup(popup));
 });
 
-// submit form to edit profile 
-let profileEditForm = document.querySelector('.popup__form_edit');
-
-const handleEditFormSubmit = evt => {
+// submit to edit profile 
+const submitProfileEditForm = evt => {
     evt.preventDefault();
 
     profileTitle.textContent = profileNameInput.value;
     profileSubtitle.textContent = profileJobInput.value;
 
-    closePopup(editProfilePopup);
+    closePopup(profileEditPopup);
 }
 
-profileEditForm.addEventListener('submit', handleEditFormSubmit)
+profileEditForm.addEventListener('submit', submitProfileEditForm);
