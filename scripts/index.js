@@ -110,6 +110,30 @@ closePopups.forEach(button => {
     button.addEventListener('click', () => closePopup(popup));
 });
 
+// close popup by overplay
+const closePopupByClickOnOverlay = evt => {
+    if (evt.target === evt.currentTarget) {
+        allPopups.forEach((popup) => {
+            closePopup(popup);
+        });
+    };
+};
+
+allPopups.forEach((popup) => {
+    popup.addEventListener('click', closePopupByClickOnOverlay);
+});
+
+// close popup by esc
+const closePopupByEsc = evt => {
+    if (evt.key === 'Escape') {
+        allPopups.forEach((popup) => {
+            closePopup(popup);
+        });
+    };
+};
+
+document.addEventListener('keydown', closePopupByEsc);
+
 // submit to edit profile 
 const submitProfileEditForm = evt => {
     evt.preventDefault();
@@ -121,3 +145,4 @@ const submitProfileEditForm = evt => {
 }
 
 profileEditForm.addEventListener('submit', submitProfileEditForm);
+
