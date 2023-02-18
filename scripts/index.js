@@ -6,17 +6,17 @@ const allPopups = document.querySelectorAll('.popup');
 // popup to edit profie
 const profileEditPopup = document.querySelector('.popup_type_edit-profile');
 const openProfileEditPopup = document.querySelector('.profile__edit-button');
-const profileEditForm = document.querySelector('.popup__form_edit');
+const profileEditForm = document.querySelector('.form_edit');
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
-const profileNameInput = document.querySelector('.popup__input_edit_name');
-const profileJobInput = document.querySelector('.popup__input_edit_job');
+const profileNameInput = document.querySelector('.form__input_edit_name');
+const profileJobInput = document.querySelector('.form__input_edit_job');
 // popup to add new elements
 const newElementAddPopup = document.querySelector('.popup_type_add-elements');
 const openNewElementAddPopup = document.querySelector('.profile__add-button');
-const newElementAddForm = document.querySelector('.popup__form_add');
-const newElementNameInput = document.querySelector('.popup__input_add_name');
-const newElementLinkInput = document.querySelector('.popup__input_add_link');
+const newElementAddForm = document.querySelector('.form_add');
+const newElementNameInput = document.querySelector('.form__input_add_name');
+const newElementLinkInput = document.querySelector('.form__input_add_link');
 // popup to open large image
 const openLargeImagePopup = document.querySelector('.popup_type_open-image');
 // button to close popup
@@ -76,6 +76,8 @@ const submitNewElementAddForm = (evt) => {
     addNewElement(name, link);
     closePopup(newElementAddPopup);
     newElementAddForm.reset();
+
+    evt.submitter.classList.add('popup__submit-button_inactive');
 };
 
 newElementAddForm.addEventListener('submit', submitNewElementAddForm);
@@ -94,7 +96,9 @@ openProfileEditPopup.addEventListener('click', () => {
 });
 
 // open popup to add new element
-openNewElementAddPopup.addEventListener('click', () => openPopup(newElementAddPopup));
+openNewElementAddPopup.addEventListener('click', () => {
+    openPopup(newElementAddPopup);
+});
 
 // close popup
 const closePopup = popup => {
