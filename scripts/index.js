@@ -85,6 +85,7 @@ newElementAddForm.addEventListener('submit', submitNewElementAddForm);
 // open popup
 const openPopup = popup => {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closePopupByEsc);
 };
 
 // open popup to edit profile
@@ -103,6 +104,7 @@ openNewElementAddPopup.addEventListener('click', () => {
 // close popup
 const closePopup = popup => {
     popup.classList.remove('popup_opened');
+    document.addEventListener('keydown', closePopupByEsc);
 };
 
 closePopups.forEach(button => {
@@ -131,8 +133,6 @@ const closePopupByEsc = evt => {
         });
     };
 };
-
-document.addEventListener('keydown', closePopupByEsc);
 
 // submit to edit profile 
 const submitProfileEditForm = evt => {
