@@ -78,6 +78,7 @@ const submitNewElementAddForm = (evt) => {
     newElementAddForm.reset();
 
     evt.submitter.classList.add('popup__submit-button_inactive');
+    evt.submitter.disabled = true;
 };
 
 newElementAddForm.addEventListener('submit', submitNewElementAddForm);
@@ -104,7 +105,7 @@ openNewElementAddPopup.addEventListener('click', () => {
 // close popup
 const closePopup = popup => {
     popup.classList.remove('popup_opened');
-    document.addEventListener('keydown', closePopupByEsc);
+    document.removeEventListener('keydown', closePopupByEsc);
 };
 
 closePopups.forEach(button => {
@@ -115,9 +116,7 @@ closePopups.forEach(button => {
 // close popup by overplay
 const closePopupByClickOnOverlay = evt => {
     if (evt.target === evt.currentTarget) {
-        allPopups.forEach((popup) => {
-            closePopup(popup);
-        });
+        closePopup(evt.target);
     };
 };
 
