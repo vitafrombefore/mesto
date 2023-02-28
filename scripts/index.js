@@ -1,9 +1,11 @@
-// template and its container
-const newElementTemplate = document.querySelector('#new-element-template');
+import { initialCards } from './initial-cards.js';
+import { Card } from './card.js';
+
+// контейнер для новых карточек
 const elementsContainer = document.querySelector('.elements__container');
-// popups
+// попапы
 const allPopups = document.querySelectorAll('.popup');
-// popup to edit profie
+// попап редактирования профиля
 const profileEditPopup = document.querySelector('.popup_type_edit-profile');
 const openProfileEditPopup = document.querySelector('.profile__edit-button');
 const profileEditForm = document.querySelector('.form_edit');
@@ -11,69 +13,44 @@ const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const profileNameInput = document.querySelector('.form__input_edit_name');
 const profileJobInput = document.querySelector('.form__input_edit_job');
-// popup to add new elements
+// попап добавления новых карточек
 const newElementAddPopup = document.querySelector('.popup_type_add-elements');
 const openNewElementAddPopup = document.querySelector('.profile__add-button');
 const newElementAddForm = document.querySelector('.form_add');
 const newElementNameInput = document.querySelector('.form__input_add_name');
 const newElementLinkInput = document.querySelector('.form__input_add_link');
-// popup to open large image
+// попап с полноразмерным изображением 
 const openLargeImagePopup = document.querySelector('.popup_type_open-image');
-// button to close popup
+const largeImage = document.querySelector('.popup__large-image');
+const largeImageCaption = document.querySelector('.popup__large-caption');
+// кнопка закрытия попапа
 const closePopups = document.querySelectorAll('.popup__close-button');
 
-// add template instead of elements
-const createNewElement = (name, link) => {
-    const newElement = newElementTemplate.content.querySelector('.new-element').cloneNode(true);
-    const newElementTitle = newElement.querySelector('.new-element__title');
-    const newElementImage = newElement.querySelector('.new-element__image');
-    const likeNewElement = newElement.querySelector('.new-element__like-button');
-    const deleteNewElement = newElement.querySelector('.new-element__delete-button');
-    const largeImage = document.querySelector('.popup__large-image');
-    const largeImageCaption = document.querySelector('.popup__large-caption');
+// добавление класса карточки вместо элементов
+const createNewElement = (data) => {
+    const card = new Card(data, '#new-element-template');
+    const cardElement = card.generateCard();
 
-    newElementTitle.textContent = name;
-    newElementTitle.alt = name;
-    newElementImage.src = link;
-
-    // like new element
-    likeNewElement.addEventListener('click', (evt) => {
-        evt.target.classList.toggle('new-element__like-button_active');
-    });
-
-    // delete new element
-    deleteNewElement.addEventListener('click', () => {
-        newElement.remove();
-    });
-
-    // open large image pupup
-    newElementImage.addEventListener('click', () => {
-        openPopup(openLargeImagePopup);
-
-        largeImage.src = link;
-        largeImage.alt = name;
-        largeImageCaption.textContent = name;
-    });
-
-    return newElement;
+    return cardElement;
 };
 
-// add any new element
-const addNewElement = (name, link) => {
-    elementsContainer.prepend(createNewElement(name, link));
+// добавление любой новой карточки
+const addNewElement = (data, container) => {
+   container.prepend(createNewElement(data));
 };
 
-// add default new elements
+// добавление шести дефолтных карточек
 initialCards.forEach((item) => {
-    elementsContainer.append(createNewElement(item.name, item.link));
+    addNewElement(item, elementsContainer);
 });
 
-// submit to add new element
+// подтверждение добавления новой карточки
 const submitNewElementAddForm = (evt) => {
     evt.preventDefault();
     const name = newElementNameInput.value;
     const link = newElementLinkInput.value;
-    addNewElement(name, link);
+    const data = {name, link};
+    addNewElement(data, elementsContainer);
     closePopup(newElementAddPopup);
     newElementAddForm.reset();
 
@@ -145,3 +122,4 @@ const submitProfileEditForm = evt => {
 
 profileEditForm.addEventListener('submit', submitProfileEditForm);
 
+export { openPopup, openLargeImagePopup, largeImageCaption, largeImage }; 
