@@ -27,21 +27,21 @@ const largeImageCaption = document.querySelector('.popup__large-caption');
 const closePopups = document.querySelectorAll('.popup__close-button');
 
 // добавление класса карточки вместо элементов
-const createNewElement = (data) => {
-    const card = new Card(data, '#new-element-template');
+const createNewElement = (name, link) => {
+    const card = new Card(name, link, '#new-element-template');
     const cardElement = card.generateCard();
 
     return cardElement;
 };
 
 // добавление любой новой карточки
-const addNewElement = (data, container) => {
-   container.prepend(createNewElement(data));
+const addNewElement = (name, link, elementsContainer) => {
+    elementsContainer.prepend(createNewElement(name, link));
 };
 
 // добавление шести дефолтных карточек
 initialCards.forEach((item) => {
-    addNewElement(item, elementsContainer);
+  elementsContainer.append(createNewElement(item.name, item.link));
 });
 
 // подтверждение добавления новой карточки
@@ -49,8 +49,7 @@ const submitNewElementAddForm = (evt) => {
     evt.preventDefault();
     const name = newElementNameInput.value;
     const link = newElementLinkInput.value;
-    const data = {name, link};
-    addNewElement(data, elementsContainer);
+    addNewElement(name, link, elementsContainer);
     closePopup(newElementAddPopup);
     newElementAddForm.reset();
 
