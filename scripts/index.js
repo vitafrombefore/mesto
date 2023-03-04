@@ -1,5 +1,16 @@
 import { initialCards } from './initial-cards.js';
 import { Card } from './card.js';
+import { FormValidator } from './form-validator.js';
+
+// селекторы элементов
+const formValidationConfig = {
+    formSelector: '.form',
+    inputSelector: '.form__input',
+    submitButtonSelector: '.popup__submit-button',
+    inactiveSubmitButtonClass: 'popup__submit-button_inactive',
+    inputErrorClass: 'form__input_type_error',
+    errorClass: 'form__input-error_active',
+};
 
 // контейнер для новых карточек
 const elementsContainer = document.querySelector('.elements__container');
@@ -41,7 +52,7 @@ const addNewElement = (name, link, elementsContainer) => {
 
 // добавление шести дефолтных карточек
 initialCards.forEach((item) => {
-  elementsContainer.append(createNewElement(item.name, item.link));
+    elementsContainer.append(createNewElement(item.name, item.link));
 });
 
 // подтверждение добавления новой карточки
@@ -120,5 +131,13 @@ const submitProfileEditForm = evt => {
 }
 
 profileEditForm.addEventListener('submit', submitProfileEditForm);
+
+// валидация формы редактирования профиля
+const profileEditFormValidation = new FormValidator(formValidationConfig, profileEditForm);
+profileEditFormValidation.enableValidation();
+
+// валидация формы добавления новой карточки
+const newElementAddValidation = new FormValidator(formValidationConfig, newElementAddForm);
+newElementAddValidation.enableValidation();
 
 export { openPopup, openLargeImagePopup, largeImageCaption, largeImage }; 
