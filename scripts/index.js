@@ -1,6 +1,6 @@
-import { initialCards } from './initial-cards.js';
-import { Card } from './card.js';
-import { FormValidator } from './form-validator.js';
+import { initialCards } from './InitialCards.js';
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
 
 // селекторы элементов
 const formValidationConfig = {
@@ -19,7 +19,7 @@ const allPopups = document.querySelectorAll('.popup');
 // попап редактирования профиля
 const profileEditPopup = document.querySelector('.popup_type_edit-profile');
 const openProfileEditPopup = document.querySelector('.profile__edit-button');
-const profileEditForm = document.querySelector('.form_edit');
+const profileEditForm = document.forms["profile-edit-form"];
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const profileNameInput = document.querySelector('.form__input_edit_name');
@@ -27,7 +27,7 @@ const profileJobInput = document.querySelector('.form__input_edit_job');
 // попап добавления новых карточек
 const newElementAddPopup = document.querySelector('.popup_type_add-elements');
 const openNewElementAddPopup = document.querySelector('.profile__add-button');
-const newElementAddForm = document.querySelector('.form_add');
+const newElementAddForm = document.forms["profile-add-form"];
 const newElementNameInput = document.querySelector('.form__input_add_name');
 const newElementLinkInput = document.querySelector('.form__input_add_link');
 // попап с полноразмерным изображением 
@@ -63,9 +63,7 @@ const submitNewElementAddForm = (evt) => {
     addNewElement(name, link, elementsContainer);
     closePopup(newElementAddPopup);
     newElementAddForm.reset();
-
-    evt.submitter.classList.add('popup__submit-button_inactive');
-    evt.submitter.disabled = true;
+    newElementAddValidation.disableButton();
 };
 
 newElementAddForm.addEventListener('submit', submitNewElementAddForm);
@@ -78,6 +76,7 @@ const openPopup = popup => {
 
 // open popup to edit profile
 openProfileEditPopup.addEventListener('click', () => {
+    profileEditFormValidation.resetValidation();
     openPopup(profileEditPopup);
 
     profileNameInput.value = profileTitle.textContent;
@@ -86,6 +85,7 @@ openProfileEditPopup.addEventListener('click', () => {
 
 // open popup to add new element
 openNewElementAddPopup.addEventListener('click', () => {
+    newElementAddValidation.resetValidation();
     openPopup(newElementAddPopup);
 });
 
@@ -100,7 +100,7 @@ closePopups.forEach(button => {
     button.addEventListener('click', () => closePopup(popup));
 });
 
-// close popup by overplay
+// close popup by overlay
 const closePopupByClickOnOverlay = evt => {
     if (evt.target === evt.currentTarget) {
         closePopup(evt.target);
@@ -114,9 +114,7 @@ allPopups.forEach((popup) => {
 // close popup by esc
 const closePopupByEsc = evt => {
     if (evt.key === 'Escape') {
-        allPopups.forEach((popup) => {
-            closePopup(popup);
-        });
+        allPopups.forEach(closePopup);
     };
 };
 
@@ -138,6 +136,17 @@ profileEditFormValidation.enableValidation();
 
 // валидация формы добавления новой карточки
 const newElementAddValidation = new FormValidator(formValidationConfig, newElementAddForm);
-newElementAddValidation.enableValidation();
+newElementAddValidation.enableValidation(); 
 
-export { openPopup, openLargeImagePopup, largeImageCaption, largeImage }; 
+// функция для открытия попапа с полноразмерным изображением
+export const handleCardClick = (name, link) => {
+    openPopup(openLargeImagePopup);
+
+    largeImageCaption.textContent = name;
+    largeImage.alt = name;
+    largeImage.src = link;
+}; 
+
+largeImageCaption.addEventListener('click', handleCardClick); 
+
+/* export { openPopup, openLargeImagePopup, largeImageCaption, largeImage }; */

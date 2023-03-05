@@ -1,10 +1,12 @@
-import { openPopup, openLargeImagePopup, largeImageCaption, largeImage } from './index.js';
+/* import { openPopup, openLargeImagePopup, largeImageCaption, largeImage } from './index.js'; */
+import { handleCardClick } from './index.js'; 
 
 export class Card {
-    constructor(name, link, templateSelector) {
+    constructor(name, link, templateSelector, handleCardClick) {
         this._name = name;
         this._link = link;
         this._templateSelector = templateSelector;
+        this._handleCardClick = handleCardClick;
     };
 
     // метод получения разметки
@@ -21,45 +23,50 @@ export class Card {
     // метод публикации карточки
     generateCard() {
         this._element = this._getTemplate();
-        this._setEventListeners();
+        this._cardImage = this._element.querySelector('.new-element__image');
+        this._cardName = this._element.querySelector('.new-element__title');
+        this._likeButton = this._element.querySelector('.new-element__like-button');
+        this._deleteButton = this._element.querySelector('.new-element__delete-button');
 
-        this._element.querySelector('.new-element__title').textContent = this._name;
-        this._element.querySelector('.new-element__title').alt = this._name;
-        this._element.querySelector('.new-element__image').src = this._link;
+        this._cardName.textContent = this._name;
+        this._cardImage.alt = this._name;
+        this._cardImage.src = this._link;
+        this._setEventListeners();
 
         return this._element;
     };
 
     // метод добавления и удаления лайка на карточке
     _likeCard() {
-        this._element.querySelector('.new-element__like-button').classList.toggle('new-element__like-button_active');
+        this._likeButton.classList.toggle('new-element__like-button_active');
     };
 
     // метод удаления карточки
     _deleteCard() {
-        const card = this._element.querySelector('.new-element__delete-button').closest('.new-element');
-        card.remove();
+        this._element.remove();
     };
 
-    // метод открытия попапа с полноразмерным изображением 
+   /* // метод открытия попапа с полноразмерным изображением
     _openLargeImagePopup() {
         openPopup(openLargeImagePopup);
 
         largeImageCaption.textContent = this._name;
         largeImage.alt = this._name;
         largeImage.src = this._link;
-    };
+    }; */
 
     // метод добавления слушателей событий
     _setEventListeners() {
-        this._element.querySelector('.new-element__like-button').addEventListener('click', () => {
+        this._likeButton.addEventListener('click', () => {
             this._likeCard();
         });
-        this._element.querySelector('.new-element__delete-button').addEventListener('click', () => {
+
+        this._deleteButton.addEventListener('click', () => {
             this._deleteCard();
         });
-        this._element.querySelector('.new-element__image').addEventListener('click', () => {
-            this._openLargeImagePopup(this._name, this._link);
+
+        this._cardImage.addEventListener('click', () => {
+            this._handleCardClick(this._name, this._link);
         });
     };
 };

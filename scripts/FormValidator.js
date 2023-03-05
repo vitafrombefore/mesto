@@ -55,8 +55,8 @@ export class FormValidator {
 
     // метод, который добавляет обработчики полям форм
     _setEventListeners() {
-        this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-        this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+        this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector)); 
+        this._buttonElement = this._formElement.querySelector(this._submitButtonSelector); 
 
         this._inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
@@ -70,5 +70,20 @@ export class FormValidator {
     // метод, который добавляет обработчики формам
     enableValidation() {
         this._setEventListeners()
+    }
+
+    // метод очистки ошибок
+    resetValidation() {
+        this._toggleButtonState();
+
+        this._inputList.forEach((inputElement) => {
+            this._hideInputError(inputElement)
+        });
+    }
+
+    // метод активировации/деактивации кнопки сабмита
+    disableButton() {
+        this._buttonElement.classList.add('popup__submit-button_inactive');
+        this._buttonElement.disabled = true;
     }
 }
