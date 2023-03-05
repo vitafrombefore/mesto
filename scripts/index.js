@@ -31,6 +31,7 @@ const newElementAddForm = document.forms["profile-add-form"];
 const newElementNameInput = document.querySelector('.form__input_add_name');
 const newElementLinkInput = document.querySelector('.form__input_add_link');
 // попап с полноразмерным изображением 
+const newElementImage = document.querySelector('.new-element__image');
 const openLargeImagePopup = document.querySelector('.popup_type_open-image');
 const largeImage = document.querySelector('.popup__large-image');
 const largeImageCaption = document.querySelector('.popup__large-caption');
@@ -136,17 +137,17 @@ profileEditFormValidation.enableValidation();
 
 // валидация формы добавления новой карточки
 const newElementAddValidation = new FormValidator(formValidationConfig, newElementAddForm);
-newElementAddValidation.enableValidation(); 
+newElementAddValidation.enableValidation();
 
 // функция для открытия попапа с полноразмерным изображением
 export const handleCardClick = (name, link) => {
-    openPopup(openLargeImagePopup);
+    newElementImage.addEventListener('click', () => {
+        openPopup(openLargeImagePopup);
 
-    largeImageCaption.textContent = name;
-    largeImage.alt = name;
-    largeImage.src = link;
-}; 
-
-largeImageCaption.addEventListener('click', handleCardClick); 
+        largeImageCaption.textContent = name;
+        largeImage.alt = name;
+        largeImage.src = link;
+    });
+};
 
 /* export { openPopup, openLargeImagePopup, largeImageCaption, largeImage }; */
