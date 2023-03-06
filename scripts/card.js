@@ -1,5 +1,3 @@
-/* import { openPopup, openLargeImagePopup, largeImageCaption, largeImage } from './index.js'; */
-
 export class Card {
     constructor(name, link, templateSelector, handleCardClick) {
         this._name = name;
@@ -44,15 +42,6 @@ export class Card {
     _deleteCard() {
         this._element.remove();
     };
-
-   /* // метод открытия попапа с полноразмерным изображением -- старый код
-    _openLargeImagePopup() {
-        openPopup(openLargeImagePopup);
-
-        largeImageCaption.textContent = this._name;
-        largeImage.alt = this._name;
-        largeImage.src = this._link;
-    }; */
 
     // метод добавления слушателей событий
     _setEventListeners() {

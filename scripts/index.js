@@ -31,29 +31,26 @@ const newElementAddForm = document.forms["profile-add-form"];
 const newElementNameInput = document.querySelector('.form__input_add_name');
 const newElementLinkInput = document.querySelector('.form__input_add_link');
 // попап с полноразмерным изображением 
-const newElementImage = document.querySelector('.new-element__image');
 const openLargeImagePopup = document.querySelector('.popup_type_open-image');
 const largeImage = document.querySelector('.popup__large-image');
 const largeImageCaption = document.querySelector('.popup__large-caption');
 // кнопка закрытия попапа
 const closePopups = document.querySelectorAll('.popup__close-button');
 
-// функция для открытия попапа с полноразмерным изображением -- новый код
+// функция для открытия попапа с полноразмерным изображением
 const handleCardClick = (name, link) => {
-    newElementImage.addEventListener('click', () => {
-        openPopup(openLargeImagePopup);
+    openPopup(openLargeImagePopup);
 
-        largeImageCaption.textContent = name;
-        largeImage.alt = name;
-        largeImage.src = link;
-    });
+    largeImageCaption.textContent = name;
+    largeImage.alt = name;
+    largeImage.src = link;
 };
 
 // добавление класса карточки вместо элементов
 const createNewElement = (name, link, handleCardClick) => {
     const card = new Card(name, link, '#new-element-template', handleCardClick);
     const cardElement = card.generateCard();
- 
+
     return cardElement;
 };
 
@@ -88,11 +85,12 @@ const openPopup = popup => {
 
 // open popup to edit profile
 openProfileEditPopup.addEventListener('click', () => {
-    profileEditFormValidation.resetValidation();
     openPopup(profileEditPopup);
 
     profileNameInput.value = profileTitle.textContent;
     profileJobInput.value = profileSubtitle.textContent;
+
+    profileEditFormValidation.resetValidation();
 });
 
 // open popup to add new element
@@ -149,5 +147,3 @@ profileEditFormValidation.enableValidation();
 // валидация формы добавления новой карточки
 const newElementAddValidation = new FormValidator(formValidationConfig, newElementAddForm);
 newElementAddValidation.enableValidation();
-
-/* export { openPopup, openLargeImagePopup, largeImageCaption, largeImage }; */
