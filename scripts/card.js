@@ -45,7 +45,7 @@ export class Card {
         this._element.remove();
     };
 
-   /* // метод открытия попапа с полноразмерным изображением
+   /* // метод открытия попапа с полноразмерным изображением -- старый код
     _openLargeImagePopup() {
         openPopup(openLargeImagePopup);
 

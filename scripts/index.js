@@ -38,7 +38,7 @@ const largeImageCaption = document.querySelector('.popup__large-caption');
 // кнопка закрытия попапа
 const closePopups = document.querySelectorAll('.popup__close-button');
 
-// функция для открытия попапа с полноразмерным изображением
+// функция для открытия попапа с полноразмерным изображением -- новый код
 const handleCardClick = (name, link) => {
     newElementImage.addEventListener('click', () => {
         openPopup(openLargeImagePopup);
