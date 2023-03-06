@@ -1,5 +1,4 @@
 /* import { openPopup, openLargeImagePopup, largeImageCaption, largeImage } from './index.js'; */
-import { handleCardClick } from './index.js'; 
 
 export class Card {
     constructor(name, link, templateSelector, handleCardClick) {

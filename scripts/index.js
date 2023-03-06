@@ -38,22 +38,33 @@ const largeImageCaption = document.querySelector('.popup__large-caption');
 // кнопка закрытия попапа
 const closePopups = document.querySelectorAll('.popup__close-button');
 
-// добавление класса карточки вместо элементов
-const createNewElement = (name, link) => {
-    const card = new Card(name, link, '#new-element-template');
-    const cardElement = card.generateCard();
+// функция для открытия попапа с полноразмерным изображением
+const handleCardClick = (name, link) => {
+    newElementImage.addEventListener('click', () => {
+        openPopup(openLargeImagePopup);
 
+        largeImageCaption.textContent = name;
+        largeImage.alt = name;
+        largeImage.src = link;
+    });
+};
+
+// добавление класса карточки вместо элементов
+const createNewElement = (name, link, handleCardClick) => {
+    const card = new Card(name, link, '#new-element-template', handleCardClick);
+    const cardElement = card.generateCard();
+ 
     return cardElement;
 };
 
 // добавление любой новой карточки
-const addNewElement = (name, link, elementsContainer) => {
-    elementsContainer.prepend(createNewElement(name, link));
+const addNewElement = (name, link, elementsContainer, handleCardClick) => {
+    elementsContainer.prepend(createNewElement(name, link, handleCardClick));
 };
 
 // добавление шести дефолтных карточек
 initialCards.forEach((item) => {
-    elementsContainer.append(createNewElement(item.name, item.link));
+    elementsContainer.append(createNewElement(item.name, item.link, handleCardClick));
 });
 
 // подтверждение добавления новой карточки
@@ -138,16 +149,5 @@ profileEditFormValidation.enableValidation();
 // валидация формы добавления новой карточки
 const newElementAddValidation = new FormValidator(formValidationConfig, newElementAddForm);
 newElementAddValidation.enableValidation();
-
-// функция для открытия попапа с полноразмерным изображением
-export const handleCardClick = (name, link) => {
-    newElementImage.addEventListener('click', () => {
-        openPopup(openLargeImagePopup);
-
-        largeImageCaption.textContent = name;
-        largeImage.alt = name;
-        largeImage.src = link;
-    });
-};
 
 /* export { openPopup, openLargeImagePopup, largeImageCaption, largeImage }; */
