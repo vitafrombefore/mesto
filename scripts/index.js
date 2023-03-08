@@ -69,7 +69,7 @@ const submitNewElementAddForm = (evt) => {
     evt.preventDefault();
     const name = newElementNameInput.value;
     const link = newElementLinkInput.value;
-    addNewElement(name, link, elementsContainer);
+    addNewElement(name, link, elementsContainer, handleCardClick);
     closePopup(newElementAddPopup);
     newElementAddForm.reset();
     newElementAddValidation.disableButton();
@@ -95,7 +95,6 @@ openProfileEditPopup.addEventListener('click', () => {
 
 // open popup to add new element
 openNewElementAddPopup.addEventListener('click', () => {
-    newElementAddValidation.resetValidation();
     openPopup(newElementAddPopup);
 });
 
