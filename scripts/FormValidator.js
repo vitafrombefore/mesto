@@ -42,21 +42,31 @@ export class FormValidator {
         });
     };
 
-    // метод переключения кнопки
+    // метод активации кнопки сабмита
+    enableButton() {
+        this._buttonElement.classList.remove(this._inactiveSubmitButtonClass);
+        this._buttonElement.disabled = false;
+    }
+
+    // метод деактивации кнопки сабмита
+    disableButton() {
+        this._buttonElement.classList.add(this._inactiveSubmitButtonClass);
+        this._buttonElement.disabled = true;
+    }
+
+    // метод переключения кнопки сабмита
     _toggleButtonState() {
         if (this._hasInvalidInput(this._inputList)) {
-            this._buttonElement.classList.add(this._inactiveSubmitButtonClass);
-            this._buttonElement.disabled = true;
+            this.disableButton();
         } else {
-            this._buttonElement.classList.remove(this._inactiveSubmitButtonClass);
-            this._buttonElement.disabled = false;
+            this.enableButton();
         };
     };
 
     // метод, который добавляет обработчики полям форм
     _setEventListeners() {
-        this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector)); 
-        this._buttonElement = this._formElement.querySelector(this._submitButtonSelector); 
+        this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+        this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
 
         this._inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
@@ -79,11 +89,5 @@ export class FormValidator {
         this._inputList.forEach((inputElement) => {
             this._hideInputError(inputElement)
         });
-    }
-
-    // метод активировации/деактивации кнопки сабмита
-    disableButton() {
-        this._buttonElement.classList.add('popup__submit-button_inactive');
-        this._buttonElement.disabled = true;
     }
 }
